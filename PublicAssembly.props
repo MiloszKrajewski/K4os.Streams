@@ -1,0 +1,34 @@
+<Project>
+  <PropertyGroup>
+    <Product>K4os.Streams</Product>
+    <Description>...</Description>
+    <PackageTags>... ... ...</PackageTags>
+    <Authors>Milosz Krajewski</Authors>
+    <Copyright>Milosz Krajewski</Copyright>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RepositoryRoot>$(MSBuildThisFileDirectory)</RepositoryRoot>
+    <RepositoryOwner>MiloszKrajewski</RepositoryOwner>
+    <RepositoryName>$(Product)</RepositoryName>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PackageId>$(AssemblyName)</PackageId>
+    <RepositoryUrl>https://github.com/$(RepositoryOwner)/$(RepositoryName)</RepositoryUrl>
+    <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
+    <PackageLicenseUrl>$(RepositoryUrl)/blob/master/LICENSE?raw=true</PackageLicenseUrl>
+    <PackageIconUrl Condition=" Exists('$(RepositoryRoot)/icon.png') ">$(RepositoryUrl)/blob/master/icon.png?raw=true</PackageIconUrl>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <Optimize>true</Optimize>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <TreatWarningsAsErrors Condition=" '$(IsReleasing)' == 'true' ">true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(SignAssembly)' == 'true' ">
+  <!-- 
+  SignAssembly and InternalsVisibleTo are not playing nice together, 
+  you need to make a call which one you want to use.
+  <AssemblyOriginatorKeyFile>$(RepositoryRoot)/.signing.snk</AssemblyOriginatorKeyFile>
+  -->
+  </PropertyGroup>
+</Project>
+
