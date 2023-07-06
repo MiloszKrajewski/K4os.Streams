@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "K4os.Streams", "K4os.Stream
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K4os.Streams.Tests", "K4os.Streams.Tests\K4os.Streams.Tests.csproj", "{EFE3ABC9-8220-47DC-A6AB-4230F58F3648}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K4os.Streams.App", "K4os.Streams.App\K4os.Streams.App.csproj", "{9731765F-51D5-4AC2-9931-211F7F0363A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K4os.Streams.Benchmarks", "K4os.Streams.Benchmarks\K4os.Streams.Benchmarks.csproj", "{AB760C6E-9A4A-4990-84A0-A94F9367CFA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,12 +47,12 @@ Global
 		{EFE3ABC9-8220-47DC-A6AB-4230F58F3648}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFE3ABC9-8220-47DC-A6AB-4230F58F3648}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFE3ABC9-8220-47DC-A6AB-4230F58F3648}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9731765F-51D5-4AC2-9931-211F7F0363A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9731765F-51D5-4AC2-9931-211F7F0363A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9731765F-51D5-4AC2-9931-211F7F0363A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9731765F-51D5-4AC2-9931-211F7F0363A2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7DBAA368-D50F-48C0-98D3-84BC566B51FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7DBAA368-D50F-48C0-98D3-84BC566B51FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB760C6E-9A4A-4990-84A0-A94F9367CFA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB760C6E-9A4A-4990-84A0-A94F9367CFA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB760C6E-9A4A-4990-84A0-A94F9367CFA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB760C6E-9A4A-4990-84A0-A94F9367CFA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
