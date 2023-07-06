@@ -161,7 +161,7 @@ Console.WriteLine(Encoding.UTF8.GetString(stream.ToArray());
 
 There are some memory specific methods available on both streams allowing quickly access data in them:
 
-```charp
+```csharp
 class ResizingByteBufferStream : Stream
 {
     Span<byte> Peek();
