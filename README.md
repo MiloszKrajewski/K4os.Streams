@@ -162,7 +162,7 @@ Console.WriteLine(Encoding.UTF8.GetString(stream.ToArray());
 There are some memory specific methods available on both streams allowing quickly access data in them:
 
 ```csharp
-class ResizingByteBufferStream : Stream
+class ResizingByteBufferStream: Stream
 {
     Span<byte> Peek();
     
@@ -170,7 +170,7 @@ class ResizingByteBufferStream : Stream
     byte[] ToArray();
 }
 
-class ChunkedByteBufferStream
+class ChunkedByteBufferStream: Stream
 {
     int ExportTo(Span<byte> target);
     byte[] ToArray();
