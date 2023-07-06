@@ -75,7 +75,7 @@ NOTE: in first column names of streams has been shortened to fit in table:
 ## Medium streams (128KB - 8MB)
 
 | Method                      |  Length |         Mean | Ratio |     Gen0 |     Gen1 |     Gen2 |
-|-----------------------------|-------- |-------------:|------:|---------:|---------:|---------:|
+|-----------------------------|--------:|-------------:|------:|---------:|---------:|---------:|
 | MemoryStream :poop:         |  131072 |    60.229 us |  1.00 |  41.6260 |  41.6260 |  41.6260 |
 | RecyclableStream :trophy:   |  131072 |     6.554 us |  0.11 |   0.0305 |        - |        - |
 | ResizingStream              |  131072 |     7.403 us |  0.12 |        - |        - |        - |
@@ -95,7 +95,7 @@ NOTE: in first column names of streams has been shortened to fit in table:
 ## Large streams (128MB - 512MB)
 
 | Method                      |    Length |      Mean | Ratio |      Gen0 |      Gen1 |      Gen2 |
-|-----------------------------|---------- |----------:|------:|----------:|----------:|----------:|
+|-----------------------------|----------:|----------:|------:|----------:|----------:|----------:|
 | MemoryStream :poop:         | 134217728 | 123.99 ms |  1.00 | 4800.0000 | 4800.0000 | 4800.0000 |
 | RecyclableStream :thumbsup: | 134217728 |  28.94 ms |  0.23 |  500.0000 |   31.2500 |         - |
 | ResizingStream              | 134217728 |  41.55 ms |  0.33 |         - |         - |         - |
