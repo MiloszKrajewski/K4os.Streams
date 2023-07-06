@@ -15,9 +15,10 @@ public class RoundtripWriteRead
 	// [Params(8*1024*1024, 512*1024*1024)]
 	// [Params(128*1024, 8*1024*1024)]
 	
-	// [Params(128, 1024, 8192, 65335)] // small
+	// [Params(128, 1024, 8192, 65336)] // small
+	[Params(8192, 65336)] // small
 	// [Params(128*1024, 1024*1024, 8*1024*1024)] // medium
-	[Params(128*1024*1024, 512*1024*1024)] // large
+	// [Params(128*1024*1024, 512*1024*1024)] // large
 	public int Length { get; set; }
 	
 	[GlobalSetup]
