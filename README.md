@@ -128,10 +128,10 @@ while `RecyclableMemoryStream` is quite bad for small streams.
 
 | Size   | MemoryStream | ResizingStream | ChunkedStream | RecyclableStream |
 |:-------|:------------:|:--------------:|:-------------:|:----------------:|
-| tiny   |      B       |       A*       |       A       |        F         |
-| small  |      D       |       A*       |       A       |        B         |
-| medium |      F       |       B        |      A*       |        A         |
-| large  |      F       |       C        |      A*       |        A*        |
+| tiny   |      B       |  A* :trophy:   | A :thumbsup:  |     F :poop:     |
+| small  |   D :poop:   |  A* :trophy:   | A :thumbsup:  |        B         |
+| medium |   F :poop:   |       B        |  A* :trophy:  |   A:thumbsup:    |
+| large  |   F :poop:   |       C        |  A* :trophy:  |   A* :trophy:    |
 
 * If your streams are always very small, use `ResizingByteBufferStream`
 * If your streams are always quite large, use `RecyclableMemoryStream` or `ChunkedByteBufferStream`
