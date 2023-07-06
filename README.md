@@ -16,18 +16,22 @@ Both of them are using `ArrayPool<byte>` but `ResizingByteBufferStream` stores d
 
 ## Measuring performance
 
-It is hard to measure performance, because lot of it depends on usage patterns. 
+Measuring performance if form of magic and it is very hard to get objective numbers.
+
+It is hard to measure performance, because lot of it depends on usage patterns.
+
 Are you using small or large streams? Do they stay in memory for long? Do you read/write them in small or large chunks?
 What are the thresholds for certain actions (like resizing or chunking)? Do you measure it just before threshold 
 or just after?
 
-It is hard to have some objective numbers.
+Let's say we measure a data structure which rebuilds itself around 1024 elements. You measure performance at 1023 and
+it might the best, you measure at 1025 and it is 20% behind all other competitors.
 
 What I measured was continuous writing (no `Seek`) of small chunks (1K) and then continuous reading but in 
 bigger chunks (8K). This was based on usage pattern where I was building a json payload from data (small `Write`s)  
 and then sending them over network (bigger `Read`s).
 
-Note, I think I already notices that `RecyclableMemoryStream` prefer larger chunks, so results could be different.
+Note, I think I already notices that `RecyclableMemoryStream` prefer larger chunks, so YMMV.
 
 All measurements were done using:
 
