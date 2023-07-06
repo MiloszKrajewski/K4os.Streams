@@ -51,26 +51,26 @@ NOTE: in first column names of streams has been shortened to fit in table:
 ## Small streams (128B - 64KB)
 
 | Method                    | Length |        Mean | Ratio |    Gen0 |   Gen1 |
-|---------------------------|--------|------------:|------:|--------:|-------:|
-| MemoryStream              | 128    |    51.95 ns |  1.00 |  0.0411 |      - |
-| RecyclableStream :poop:   | 128    |   278.25 ns |  5.36 |  0.0324 |      - |
-| ResizingStream :trophy:   | 128    |    44.52 ns |  0.86 |  0.0401 |      - |
-| ChunkedStream :thumbsup:  | 128    |    46.08 ns |  0.89 |  0.0421 |      - |
+|---------------------------|-------:|------------:|------:|--------:|-------:|
+| MemoryStream              |    128 |    51.95 ns |  1.00 |  0.0411 |      - |
+| RecyclableStream :poop:   |    128 |   278.25 ns |  5.36 |  0.0324 |      - |
+| ResizingStream :trophy:   |    128 |    44.52 ns |  0.86 |  0.0401 |      - |
+| ChunkedStream :thumbsup:  |    128 |    46.08 ns |  0.89 |  0.0421 |      - |
 |                           |        |             |       |         |        |
-| MemoryStream              | 1024   |   101.99 ns |  1.00 |  0.1329 | 0.0005 |
-| RecyclableStream :poop:   | 1024   |   312.58 ns |  3.06 |  0.0324 |      - |
-| ResizingStream :trophy:   | 1024   |    85.31 ns |  0.79 |  0.0067 |      - |
-| ChunkedStream :thumbsup:  | 1024   |    90.07 ns |  0.88 |  0.0086 |      - |
+| MemoryStream              |   1024 |   101.99 ns |  1.00 |  0.1329 | 0.0005 |
+| RecyclableStream :poop:   |   1024 |   312.58 ns |  3.06 |  0.0324 |      - |
+| ResizingStream :trophy:   |   1024 |    85.31 ns |  0.79 |  0.0067 |      - |
+| ChunkedStream :thumbsup:  |   1024 |    90.07 ns |  0.88 |  0.0086 |      - |
 |                           |        |             |       |         |        |
-| MemoryStream :poop:       | 8192   |    972.6 ns |  1.00 |  1.8539 | 0.0668 |
-| RecyclableStream          | 8192   |    627.3 ns |  0.64 |  0.0324 |      - |
-| ResizingStream :thumbsup: | 8192   |    503.8 ns |  0.52 |  0.0067 |      - |
-| ChunkedStream :trophy:    | 8192   |    476.3 ns |  0.49 |  0.0086 |      - |
+| MemoryStream :poop:       |   8192 |    972.6 ns |  1.00 |  1.8539 | 0.0668 |
+| RecyclableStream          |   8192 |    627.3 ns |  0.64 |  0.0324 |      - |
+| ResizingStream :thumbsup: |   8192 |    503.8 ns |  0.52 |  0.0067 |      - |
+| ChunkedStream :trophy:    |   8192 |    476.3 ns |  0.49 |  0.0086 |      - |
 |                           |        |             |       |         |        |
-| MemoryStream :poop:       | 65336  |  7,328.8 ns |  1.00 | 15.5029 | 3.8681 |
-| RecyclableStream :trophy: | 65336  |  3,460.7 ns |  0.47 |  0.0305 |      - |
-| ResizingStream :thumbsup: | 65336  |  3,664.8 ns |  0.50 |  0.0038 |      - |
-| ChunkedStream             | 65336  |  3,705.0 ns |  0.51 |  0.0076 |      - |
+| MemoryStream :poop:       |  65336 |  7,328.8 ns |  1.00 | 15.5029 | 3.8681 |
+| RecyclableStream :trophy: |  65336 |  3,460.7 ns |  0.47 |  0.0305 |      - |
+| ResizingStream :thumbsup: |  65336 |  3,664.8 ns |  0.50 |  0.0038 |      - |
+| ChunkedStream :thumbsup:  |  65336 |  3,705.0 ns |  0.51 |  0.0076 |      - |
 
 ## Medium streams (128KB - 8MB)
 
