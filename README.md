@@ -28,7 +28,7 @@ Let's say we measure a data structure which rebuilds itself around 1024 elements
 it might the best, you measure at 1025 and it is 20% behind all other competitors.
 
 What I measured was continuous writing (no `Seek`) of small chunks (1K) and then continuous reading but in 
-bigger chunks (8K). This was based on usage pattern where I was building a json payload from data (small `Write`s)  
+bigger chunks (8K). This was based on usage pattern where I was building a json payload from data (small `Write`s)
 and then sending them over network (bigger `Read`s).
 
 Note, I think I already notices that `RecyclableMemoryStream` prefer larger chunks, so YMMV.
@@ -164,7 +164,7 @@ There are some memory specific methods available on both streams allowing quickl
 ```csharp
 class ResizingByteBufferStream: Stream
 {
-    Span<byte> Peek();
+    Span<byte> AsSpan();
     
     int ExportTo(Span<byte> target);
     byte[] ToArray();
@@ -176,6 +176,9 @@ class ChunkedByteBufferStream: Stream
     byte[] ToArray();
 }
 ```
+
+(NOTE: no `AsSpan()` for `ChunkedByteBufferStream` because it is not a single block of memory, 
+I may add `AsReadOnlySequence` one day though).
 
 Other than that it is just a `Stream`.
 
