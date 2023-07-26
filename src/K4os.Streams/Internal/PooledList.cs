@@ -6,7 +6,7 @@ namespace K4os.Streams.Internal;
 
 /// <summary>
 /// Minimalistic list implementation that uses pooled array for storage.
-/// Replaces <see cref="IList{T}"/> in <see cref="ChunkedByteBuffer"/>.
+/// Replaces <see cref="IList{T}"/> in <see cref="ChunkedBuffer{T}"/>.
 /// </summary>
 /// <typeparam name="T">Type of item.</typeparam>
 public class PooledList<T>

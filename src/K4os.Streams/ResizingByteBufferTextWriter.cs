@@ -3,13 +3,12 @@
 namespace K4os.Streams;
 
 /// <summary>
-/// Replacement for <see cref="MemoryStream"/> with better performance, focused on memory pooling.
-/// Data is stored in a single block of memory, so it is bound by maximum array size, and requires
-/// contiguous memory block. This restrictions however come with better performance, at least
-/// for small streams.
-/// If you think you need something move advanced see <see cref="ChunkedByteBufferStream"/>.
+/// A <see cref="TextWriter"/> implementation that writes to <see cref="ResizingBuffer"/>
+/// providing access to written data as a span.
+/// Roughly used in situations similar to <code>new StreamWriter(new MemoryStream())</code> or
+/// <code>new StringWriter(new StringBuilder())</code>. 
 /// </summary>
-public class ResizingByteBufferStream: ByteBufferStream<ResizingBuffer<byte>>
+public class ResizingByteBufferTextWriter: ByteBufferTextWriter<ResizingBuffer<byte>>
 {
 	/// <summary>
 	/// Provides access to underlying data as a span.

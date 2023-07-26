@@ -10,6 +10,7 @@ packages/
 
 **/bin/
 **/obj/
+**/BenchmarkDotNet.Artifacts/
 
 .secrets.cfg
 .signing.snk

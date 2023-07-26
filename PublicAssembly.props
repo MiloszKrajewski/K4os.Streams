@@ -1,8 +1,8 @@
 <Project>
   <PropertyGroup>
     <Product>K4os.Streams</Product>
-    <Description>...</Description>
-    <PackageTags>... ... ...</PackageTags>
+    <Description>Hi performance in-memory streams</Description>
+    <PackageTags>arraypool memorystream stream</PackageTags>
     <Authors>Milosz Krajewski</Authors>
     <Copyright>Milosz Krajewski</Copyright>
   </PropertyGroup>

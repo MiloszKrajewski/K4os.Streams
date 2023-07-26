@@ -8,4 +8,4 @@ namespace K4os.Streams;
 /// it requires contiguous memory block. This comes at a cost of additional complexity.
 /// If you think you need something simpler see <see cref="ResizingByteBufferStream"/>.
 /// </summary>
-public class ChunkedByteBufferStream: ByteBufferStreamAdapter<ChunkedByteBuffer> { }
+public class ChunkedByteBufferStream: ByteBufferStream<ChunkedBuffer<byte>> { }
