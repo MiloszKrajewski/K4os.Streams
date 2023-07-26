@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFrameworks>net462;net6.0</TargetFrameworks>
     <RootNamespace>K4os.Streams.Test</RootNamespace>
   </PropertyGroup>
   <ItemGroup>

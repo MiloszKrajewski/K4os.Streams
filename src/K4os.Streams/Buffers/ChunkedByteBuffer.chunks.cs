@@ -11,20 +11,19 @@ namespace K4os.Streams.Buffers;
 /// Please note, this a struct to reduce memory allocations, but comes in with caveats
 /// that state can be easily corrupted if not used properly.
 /// </summary>
-public partial struct ChunkedByteBuffer
+public partial struct ChunkedBuffer<TItem> where TItem: unmanaged
 {
-	private const int MAX_BLOCK0_SIZE = 64 * 1024;
-
-	private readonly record struct Chunk(byte[] Data, long Start)
+	internal readonly record struct Chunk(TItem[] Data, long Start)
 	{
-		private static readonly int SizeOf = IntPtr.Size + sizeof(long); // Unsafe.SizeOf<Chunk>()
-		public static readonly int MIN_ARRAY_SIZE = ByteArray.MIN_ARRAY_SIZE / SizeOf;
+		public const int SizeOfT = sizeof(long) + sizeof(long);
+		public static readonly int MinimumAllocatedSize =
+			PooledArray<byte>.MinimumAllocatedSize / SizeOfT;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool Contains(long position) => (ulong)(position - Start) <= (ulong)Data.Length;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public Span<byte> SpanAt(long position) => Data.AsSpan((int)(position - Start));
+		public Span<TItem> SpanAt(long position) => Data.AsSpan((int)(position - Start));
 	}
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -138,7 +137,7 @@ public partial struct ChunkedByteBuffer
 
 		for (var i = 0; i < count; ++i)
 		{
-			ByteArray.Recycle(chunks[i].Data);
+			PooledArray<TItem>.Recycle(chunks[i].Data);
 		}
 
 		_chunks = null;
@@ -157,7 +156,7 @@ public partial struct ChunkedByteBuffer
 		var capacity = _capacity;
 		while (capacity < length)
 		{
-			var bytes = ByteArray.Allocate(NextChunkSize(size));
+			var bytes = PooledArray<TItem>.Allocate(NextChunkSize(size));
 			chunks.Add(new Chunk(bytes, capacity));
 			size = bytes.Length;
 			capacity += size;
@@ -171,7 +170,7 @@ public partial struct ChunkedByteBuffer
 	private static int NextChunkSize(int lastChunkSize) =>
 		Polyfills.Clamp(
 			(int)Polyfills.RoundUpPow2((uint)lastChunkSize << 1),
-			MAX_BLOCK0_SIZE, ByteArray.MAX_POOLED_SIZE);
+			MaximumBlock0Size, PooledArray<TItem>.MaximumPooledSize);
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private PooledList<Chunk> EnsureChunks() =>
@@ -182,7 +181,7 @@ public partial struct ChunkedByteBuffer
 		Debug.Assert(_chunks is null);
 
 		// var chunks = new List<Chunk>(Chunk.MIN_ARRAY_SIZE);
-		var chunks = new PooledList<Chunk>(Chunk.MIN_ARRAY_SIZE);
+		var chunks = new PooledList<Chunk>(Chunk.MinimumAllocatedSize);
 
 		var block0 = _block0;
 		if (block0 is not null)
@@ -214,7 +213,7 @@ public partial struct ChunkedByteBuffer
 
 			var size = bytes.Length;
 			capacity -= size;
-			ByteArray.Recycle(bytes);
+			PooledArray<TItem>.Recycle(bytes);
 			index--;
 		}
 
@@ -232,7 +231,7 @@ public partial struct ChunkedByteBuffer
 		return _length = length;
 	}
 
-	private int WriteToChunks(ReadOnlySpan<byte> source)
+	private int WriteToChunks(ReadOnlySpan<TItem> source)
 	{
 		Debug.Assert(_chunks is not null);
 
@@ -268,7 +267,7 @@ public partial struct ChunkedByteBuffer
 		return total;
 	}
 
-	private int ReadFromChunks(Span<byte> target)
+	private int ReadFromChunks(Span<TItem> target)
 	{
 		Debug.Assert(_chunks is not null);
 
@@ -305,7 +304,7 @@ public partial struct ChunkedByteBuffer
 	}
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private int ExportChunksTo(Span<byte> target)
+	private int ExportChunksTo(Span<TItem> target)
 	{
 		Debug.Assert(_chunks is not null);
 

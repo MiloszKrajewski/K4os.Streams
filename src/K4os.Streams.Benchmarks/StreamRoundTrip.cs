@@ -5,7 +5,7 @@ using Microsoft.IO;
 namespace K4os.Streams.Benchmarks;
 
 [MemoryDiagnoser]
-public class RoundtripWriteRead
+public class StreamRoundTrip
 {
 	private readonly byte[] _source = new byte[1024];
 	private readonly byte[] _target = new byte[8192];
@@ -15,8 +15,8 @@ public class RoundtripWriteRead
 	// [Params(8*1024*1024, 512*1024*1024)]
 	// [Params(128*1024, 8*1024*1024)]
 	
-	// [Params(128, 1024, 8192, 65336)] // small
-	[Params(8192, 65336)] // small
+	[Params(128, 1024, 8192, 65336)] // small
+	// [Params(8192, 65336)] // small
 	// [Params(128*1024, 1024*1024, 8*1024*1024)] // medium
 	// [Params(128*1024*1024, 512*1024*1024)] // large
 	public int Length { get; set; }
@@ -48,7 +48,7 @@ public class RoundtripWriteRead
 	[Benchmark]
 	public void ResizingStream()
 	{
-		using var stream = new ByteBufferStreamAdapter<ResizingByteBuffer>();
+		using var stream = new ByteBufferStream<ResizingBuffer<byte>>();
 		WriteBytesTo(stream);
 		ReadAllBytesFrom(stream);
 	}
@@ -56,7 +56,7 @@ public class RoundtripWriteRead
 	[Benchmark]
 	public void ChunkedStream()
 	{
-		using var stream = new ByteBufferStreamAdapter<ChunkedByteBuffer>();
+		using var stream = new ByteBufferStream<ChunkedBuffer<byte>>();
 		WriteBytesTo(stream);
 		ReadAllBytesFrom(stream);
 	}

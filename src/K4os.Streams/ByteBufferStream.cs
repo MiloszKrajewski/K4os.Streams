@@ -3,16 +3,16 @@
 namespace K4os.Streams;
 
 /// <summary>
-/// Adapter for <see cref="IByteBuffer"/> to expose functionality like <see cref="Stream"/>.
+/// Adapter for <see cref="IBuffer{T}"/> to expose functionality like <see cref="Stream"/>.
 /// </summary>
-/// <typeparam name="TState"><see cref="IByteBuffer"/></typeparam>
-public class ByteBufferStreamAdapter<TState>: Stream 
-	where TState: struct, IByteBuffer
+/// <typeparam name="TByteBuffer"><see cref="IBuffer{T}"/></typeparam>
+public class ByteBufferStream<TByteBuffer>: Stream 
+	where TByteBuffer: struct, IBuffer<byte>
 {
-	private TState _bytes;
+	private TByteBuffer _bytes;
 	
-	/// <summary>Internal <see cref="IByteBuffer"/> instance.</summary>
-	protected ref TState Bytes => ref _bytes;
+	/// <summary>Internal <see cref="IBuffer{T}"/> instance.</summary>
+	protected ref TByteBuffer Bytes => ref _bytes;
 
 	/// <inheritdoc />
 	public override bool CanTimeout => false;
@@ -123,7 +123,7 @@ public class ByteBufferStreamAdapter<TState>: Stream
 	}
 
 	#endif
-
+	
 	/// <summary>
 	/// Exports content of this stream to <paramref name="target"/> span.
 	/// Returns number of bytes actually exported.

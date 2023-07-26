@@ -5,9 +5,9 @@ using Xunit;
 
 namespace K4os.Streams.Test;
 
-public class ResizingStreamTests: StreamTests<ByteBufferStreamAdapter<ResizingByteBuffer>> { }
+public class ResizingStreamTests: StreamTests<ByteBufferStream<ResizingBuffer<byte>>> { }
 
-public class ChunkedStreamTests: StreamTests<ByteBufferStreamAdapter<ChunkedByteBuffer>> { }
+public class ChunkedStreamTests: StreamTests<ByteBufferStream<ChunkedBuffer<byte>>> { }
 
 public abstract class StreamTests<TStream> where TStream: Stream, new()
 {

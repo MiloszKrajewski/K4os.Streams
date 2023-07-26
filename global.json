@@ -9,6 +9,7 @@
     "build": ".\\nuke build",
     "rebuild": ".\\nuke rebuild",
     "release": ".\\nuke release",
-    "test": ".\\nuke test"
+    "test": ".\\nuke test",
+    "benchmark": "dotnet run --project .\\src\\K4os.Streams.Benchmarks --configuration Release"
   }
 }
