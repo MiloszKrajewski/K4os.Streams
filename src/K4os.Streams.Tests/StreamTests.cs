@@ -305,7 +305,7 @@ public abstract class StreamTests<TStream> where TStream: Stream, new()
 		for (var i = 0; i < a.Length; i++)
 		{
 			var equal = a[i] == b[i];
-			if (!equal) Assert.True(false, $"Buffers are different at {i}");
+			if (!equal) Assert.Fail($"Buffers are different at {i}");
 		}
 	}
 }

@@ -1,56 +1,28 @@
-﻿using K4os.Streams.Buffers;
-using K4os.Streams.Internal;
+﻿using System.Runtime.CompilerServices;
+using K4os.Streams.Buffers;
 
 namespace K4os.Streams;
 
-public class StringBuffer<TCharBuffer>
+public class StringBuffer<TCharBuffer>: IStringBuffer
 	where TCharBuffer: struct, IBuffer<char>
 {
 	private TCharBuffer _bytes;
 
 	protected ref TCharBuffer Bytes => ref _bytes;
 	
-	public int Length => (int)Math.Min(Bytes.Length, PooledArray<char>.MAX_ARRAY_ITEMS);
-
-	public StringBuffer<TCharBuffer> Clear()
-	{
-		Bytes.Length = 0;
-		return this;
-	}
-
-	public unsafe StringBuffer<TCharBuffer> Append(char symbol)
-	{
-		Bytes.Write(new ReadOnlySpan<char>(&symbol, 1));
-		return this;
-	}
-
-	public StringBuffer<TCharBuffer> Append(ReadOnlySpan<char> text)
-	{
-		Bytes.Write(text);
-		return this;
-	}
-
-	public StringBuffer<TCharBuffer> Append(string? text)
-	{
-		Bytes.Write(text.AsSpan());
-		return this;
-	}
-
-	public StringBuffer<TCharBuffer> Append(char[] text)
-	{
-		Bytes.Write(text.AsSpan());
-		return this;
-	}
-
-	public StringBuffer<TCharBuffer> Append(char[] text, int offset, int length)
-	{
-		Bytes.Write(text.AsSpan(offset, length));
-		return this;
-	}
+	public int Length => 
+		StringBufferExtensions.ClampStringLength(Bytes.Length);
 	
-	public override string ToString() =>
-		Polyfills.CreateString(Length, this, static (target, self) => self.Bytes.ExportTo(target));
-
+	public void Reset() => 
+		Bytes.Length = 0;
+	
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Extend(ReadOnlySpan<char> text) => 
+		Bytes.Write(text);
+	
 	public int ExportTo(Span<char> target) => 
 		Bytes.ExportTo(target);
+	
+	public override string ToString() => 
+		Bytes.ExportToString();
 }

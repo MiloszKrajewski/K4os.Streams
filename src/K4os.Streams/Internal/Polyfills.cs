@@ -83,7 +83,7 @@ internal static class Polyfills
 
 		string result;
 		fixed (char* targetP = target) 
-			result = new string(targetP, 0, target.Length);
+			result = new string(targetP, 0, length);
 		
 		if (pooled is not null)
 			ArrayPool<char>.Shared.Return(pooled);

@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Text;
 using BenchmarkDotNet.Attributes;
-using K4os.Streams.Buffers;
 
 namespace K4os.Streams.Benchmarks;
 
