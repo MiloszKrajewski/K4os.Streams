@@ -134,7 +134,7 @@ while `RecyclableMemoryStream` is quite bad for small streams.
 |:-------|:------------:|:--------------:|:-------------:|:----------------:|
 | tiny   |      B       |  A* :trophy:   | A :thumbsup:  |     F :poop:     |
 | small  |   D :poop:   |  A* :trophy:   | A :thumbsup:  |        B         |
-| medium |   F :poop:   |       B        |  A* :trophy:  |   A:thumbsup:    |
+| medium |   F :poop:   |       B        |  A* :trophy:  |   A :thumbsup:   |
 | large  |   F :poop:   |       C        |  A* :trophy:  |   A* :trophy:    |
 
 * If your streams are always very small, use `ResizingByteBufferStream`
