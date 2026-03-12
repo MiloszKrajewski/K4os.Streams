@@ -16,3 +16,5 @@ packages/
 
 *.bak
 *.user
+
+**/BenchmarkDotNet.Artifacts/
